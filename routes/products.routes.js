@@ -11,6 +11,13 @@ router.get('/products', (req, res) => {
   });  
 });
 
+router.get('/products/random', (req, res) => {
+  req.db.collection('products').aggregate([ { $sample: { size: 1 } } ]).toArray((err, data) => {
+    if(err) res.status(500).json({ message: err });
+    else res.json(data[0]);
+  });
+});
+
 router.get('/products/:id', (req, res) => {
   req.db.collection('products').findOne({_id : ObjectId(req.params.id)}, (err, data) => {
     if(err) res.status(500).json({message: "Not found"});
@@ -38,13 +45,6 @@ router.delete('/products/:id', (req, res) => {
   req.db.collection('products').deleteOne({_id : ObjectId(req.params.id)}, err => {
     if(err) res.status(500).json({ message: err });
     else res.json({ message: 'OK' });
-  });
-});
-
-router.get('/products/random', (req, res) => {
-  req.db.collection('products').aggregate([ { $sample: { size: 1 } } ]).toArray((err, data) => {
-    if(err) res.status(500).json({ message: err });
-    else res.json(data[0]);
   });
 });
 
