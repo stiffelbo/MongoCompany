@@ -21,7 +21,7 @@ app.use((req, res) => {
 })
 
 // connects our backend code with the database
-mongoose.connect('mongodb://localhost:27017/companyDB', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://stiffelbo:stifelboMongo123@cluster0.vgspf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.once('open', () => {

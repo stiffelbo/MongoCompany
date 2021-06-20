@@ -7,8 +7,6 @@ router.get('/departments/', departmentController.getAll);
 
 router.get('/departments/random', departmentController.getRandom);
 
-router.get('/departments/random', departmentController.getRandom);
-
 router.get('/departments/:id', departmentController.getById);
 
 router.post('/departments', departmentController.postOne);
