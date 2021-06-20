@@ -24,7 +24,7 @@ exports.getById = async (req, res) => {
   try {    
     const result = await Department.findById(req.params.id);
     if(!result) res.status(404).json({message: 'Not found'});
-    else res.json(dep);
+    else res.json(result);
   } catch (err) {
     res.status(500).json({message: err});
   }  
@@ -35,7 +35,7 @@ exports.postOne = async (req, res) => {
     const { name } = req.body;
     const newDoc = new Department({ name: name });
     await newDoc.save();
-    res.json(newDoc);
+    res.json({ message: 'OK' });
   } catch(err) {
     res.status(500).json({ message: err });
   }
