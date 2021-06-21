@@ -18,6 +18,7 @@ describe('DELETE /api/departments', () => {
     const res = await request(server).delete('/api/departments/5d9f1140f10a81216cfd4408'); 
     expect(res.status).to.be.equal(200);
     expect(res.body).to.have.property('_id').that.is.a('string');
+    expect(res.body).to.have.property('name').that.is.a('string');
   });
 
   after(async () => {
